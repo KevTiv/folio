@@ -1,0 +1,35 @@
+@use '../mixin/display' as *;
+@use '../mixin/colors' as *;
+
+.nav{
+    @include flex-space-btwn-center;
+    // background-color: $secondary-color;
+    color: $title-color;
+}
+.name{
+    position: relative;
+    span{
+        display: inline-block;
+        mix-blend-mode: difference;
+    }
+    &::before{
+        width: 100%;
+        height: 10%;
+        position: absolute;
+        content: '';
+        display: inline-block;
+        z-index: -1;
+        top: 0;
+        top: 45%;
+    }
+}
+.menu{
+    @include flex-center;
+}
+.menuOption {
+    @include flex-col-around;
+    background-color: $secondary-color;
+    color: $primary-color;
+
+    clip-path: circle(0% at 50% 0);
+}

@@ -1,0 +1,27 @@
+@use '../mixin/display' as *;
+@use '../mixin/colors' as *;
+
+.about{
+   color: $title-color;
+}
+
+.title {
+    // @include flex-around;
+    span{
+        position: relative;
+
+        mix-blend-mode: darken;
+
+        &::before {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            content: '';
+            display: inline-block;
+            z-index: -1;
+            top: 0;
+            background-color: $highlight-1;
+            clip-path: circle(13% at 50% 50%);
+        }
+    }   
+}
