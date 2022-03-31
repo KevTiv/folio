@@ -4,6 +4,8 @@ import styles from '../styles/Home.module.scss'
 
 import Navbar from '../components/navbar'
 import About from '../components/about'
+import Project from '../components/project'
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -15,6 +17,7 @@ export default function Home() {
       <Navbar/>
       <main className={styles.main}>
         <About />
+        <Project />
       </main>
 
       <footer className={styles.footer}>

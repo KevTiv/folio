@@ -1,35 +1,117 @@
-@use '../mixin/display' as *;
 @use '../mixin/colors' as *;
-
+@use '../mixin/font' as *;
 .nav{
-    @include flex-space-btwn-center;
-    // background-color: $secondary-color;
-    color: $title-color;
-}
-.name{
     position: relative;
-    span{
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+    min-height: 3rem;
+
+   div{
+       margin: 0 1rem;
+   }
+   &::after{
+        position: absolute;
         display: inline-block;
-        mix-blend-mode: difference;
-    }
-    &::before{
+        content: '';
+        opacity: 1;
+        width: 95%;
+        height: 100%;
+        border-bottom: 1px solid $secondary-color;
+        bottom: -0.5rem;
+        left: 2%;
+        z-index: 9999;
+        mix-blend-mode: exclusion;
+        z-index: 0;
+   }
+}
+
+.nameContainer{
+    position: relative;
+
+    .name::before{
+        position: absolute;
+        display: inline-block;
+        content: '';
         width: 100%;
         height: 10%;
-        position: absolute;
-        content: '';
-        display: inline-block;
-        z-index: -1;
-        top: 0;
+        // background-color: $highlight-3;
         top: 45%;
+        mix-blend-mode: exclusion;
+        transition: background-color 1s ease-in-out;
     }
 }
-.menu{
-    @include flex-center;
-}
-.menuOption {
-    @include flex-col-around;
-    background-color: $secondary-color;
-    color: $primary-color;
 
-    clip-path: circle(0% at 50% 0);
+.beforeElemBg{
+    .name::before {
+        background-color: $highlight-3;
+    }
+}
+
+.name{
+    @include titleFont;
+    
+    position: fixed;
+    top: 1rem;
+    z-index: 9999;
+    @apply text-xl;
+
+    &:nth-child(2){
+        left: 5.5rem;
+    }
+}
+
+.menu{
+    @include titleFont;
+    cursor: pointer;
+    position: fixed;
+    width: 3rem;
+    top: 1.35rem;
+    right: 1rem;
+    z-index: 9999;
+    transition: all 0.25s ease-in-out;
+    @apply text-sm;
+}
+.menuPseudoElem{
+    &::before,
+    &::after {
+        width: 1.5rem;
+        aspect-ratio: 1;
+        border: 0.1rem solid $secondary-color;
+        position: absolute;
+        border-radius: 0.1rem;
+        content: '';
+        top: -0.15rem;
+        transform: rotate(45deg);
+        // z-index: -1;
+        mix-blend-mode: exclusion;
+    }
+    &::before{
+        left: 0;
+    }
+    &::after{
+        right: 0;
+    }
+}
+
+.menuOption{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    background-color: $secondary-color;
+
+
+    li{
+        @include titleFont;
+        cursor: pointer;
+        color: $text-color;
+        padding: 0 2rem;
+        @apply text-5xl;
+    }
 }

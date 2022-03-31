@@ -8,6 +8,8 @@ export const revealMenu = (isMenuOpen, navRef)=>{
     const menu = navRef.current.querySelector('span.nav_menu__5Hd38')
 
     const nameBeforeElem = CSSRulePlugin.getRule('.nav_name__S4n8D::before')
+    const menuBeforeElem = CSSRulePlugin.getRule('.nav_menuPseudoElem__GcQEu::before')
+    const menuAfterElem = CSSRulePlugin.getRule('.nav_menuPseudoElem__GcQEu::after')
 
     if(!isMenuOpen){
         const tl = gsap.timeline()
@@ -31,6 +33,20 @@ export const revealMenu = (isMenuOpen, navRef)=>{
             duration: 0.1,
             ease: 'power2.inOut'
         },'-=0.6')
+        .to(menuBeforeElem,{
+            transform: 'rotate(-45deg)',
+            border: '0.1rem solid #d9d9d9',
+            duration: 0.3,
+            stagger: 0.1,
+            ease: 'power2.inOut'
+        },'-=0.6')
+        .to(menuAfterElem,{
+            transform: 'rotate(-45deg)',
+            border: '0.1rem solid #d9d9d9',
+            duration: 0.3,
+            stagger: 0.1,
+            ease: 'power2.inOut'
+        },'-=0.5')
     }
     if(isMenuOpen){
         //Close
@@ -56,5 +72,38 @@ export const revealMenu = (isMenuOpen, navRef)=>{
             duration: 0.2,
             ease: 'power2.inOut'
         },'-=0.3')
+        .to(menuBeforeElem,{
+            transform: 'rotate(45deg)',
+            border: '0.1rem solid #353535',
+            duration: 0.3,
+            stagger: 0.1,
+            ease: 'power2.inOut'
+        },'-=0.5')
+        .to(menuAfterElem,{
+            transform: 'rotate(45deg)',
+            border: '0.1rem solid #353535',
+            duration: 0.3,
+            stagger: 0.1,
+            ease: 'power2.inOut'
+        },'-=0.6')
     }
-}
+};
+
+export const kevImgAnimation = () =>{
+    gsap.registerPlugin(CSSRulePlugin)
+
+    const kevImgBG1Before = CSSRulePlugin.getRule('.about_kevImgBG1__M_W6D::before');
+    const kevImgBG1After = CSSRulePlugin.getRule('.about_kevImgBG1__M_W6D::after');
+
+    const kevImgBG2Before = CSSRulePlugin.getRule('.about_kevImgBG2__qlTa0::before');
+    const kevImgBG2After = CSSRulePlugin.getRule('.about_kevImgBG2__qlTa0::after');
+
+    gsap.to([ kevImgBG1Before, kevImgBG1After, kevImgBG2Before, kevImgBG2After ],{
+        transform: 'rotate(720deg)',
+        // stagger: 1,
+        duration: 64,
+        ease: 'linear',
+        repeat: -1,
+        yoyo: true
+    });
+};
