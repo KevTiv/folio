@@ -1,17 +1,33 @@
 import Image from 'next/image'
+import styles from '../../../styles/components/project.module.scss'
+import {useState, useRef} from 'react'
+import {revealProject, animateSpanClick} from '../../../animation'
 
 const WineGrader = ()=>{
+    const [isProjectBodyOpen, setIsProjectBodyOpen] = useState(false);
+    let projectRef = useRef(null);
+    let projectImgRef = useRef(null);
+
     return(
         <>
-            <div>
-                <div>
-                    <h2>Wine Grader</h2>
-                    {/* Arrow */}
-
+            <div className={styles.projectContainer} 
+                onClick={()=>{
+                    setIsProjectBodyOpen(!isProjectBodyOpen)
+                    revealProject(projectRef, projectImgRef, isProjectBodyOpen)
+                    animateSpanClick(isProjectBodyOpen, '.project_wineGraderClick__36BRJ::before')
+                }}
+            >
+                <div className={styles.titleContainer}>
+                    <h2 className={styles.projectTitle}>
+                        Wine Grader
+                    </h2>
+                    <span className={styles.wineGraderClick}></span>
+                </div>
+                <div className={styles.img} ref={projectImgRef}>
                     <Image className={"projectImg"} src={'/img/wineGrader/wineGrader_1.webp'} alt='portfolio img' width='256' height='256' layout='responsive'/> 
                 </div>
-                <div>
-                     <div>
+                <div ref={projectRef} className={styles.projectContent}>
+                    <div className={styles.links}>
                         <p>
                             <a href="https://winequality-predictor.herokuapp.com/" target="_blank" rel="noopener noreferrer">Go to site</a>
                             
@@ -28,10 +44,12 @@ const WineGrader = ()=>{
                         The app grader model is built using machine learning techniques on a dataset that is consist of 1600 different wines.
                     </p>
                     <h3>Goal</h3>
-                    <p>
-                        Build a web application That offers the end-user the possibility to grade the wine quality 
-                        depending on the chemical content of the user’s wine.
-                    </p>
+                    <ul>
+                        <li>
+                            Build a web application That offers the end-user the possibility to grade the wine quality 
+                            depending on the chemical content of the user&apos;s wine.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </>

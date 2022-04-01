@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.scss'
 import Navbar from '../components/navbar'
 import About from '../components/about'
 import Project from '../components/project'
+import Contact from '../components/contact'
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
         <About />
         <Project />
       </main>
-
+      <Contact />
       <footer className={styles.footer}>
         <h1>
           FOOTER

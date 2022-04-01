@@ -89,21 +89,87 @@ export const revealMenu = (isMenuOpen, navRef)=>{
     }
 };
 
-export const kevImgAnimation = () =>{
+export const sunBurstAnimation = () =>{
     gsap.registerPlugin(CSSRulePlugin)
 
-    const kevImgBG1Before = CSSRulePlugin.getRule('.about_kevImgBG1__M_W6D::before');
-    const kevImgBG1After = CSSRulePlugin.getRule('.about_kevImgBG1__M_W6D::after');
+    const titleAnimation1Before = CSSRulePlugin.getRule('.about_titleAnimationBox1__dXZVO::before');
+    const titleAnimation1After = CSSRulePlugin.getRule('.about_titleAnimationBox1__dXZVO::after');
 
-    const kevImgBG2Before = CSSRulePlugin.getRule('.about_kevImgBG2__qlTa0::before');
-    const kevImgBG2After = CSSRulePlugin.getRule('.about_kevImgBG2__qlTa0::after');
+    const titleAnimation2Before = CSSRulePlugin.getRule('.about_titleAnimationBox2__RCKSn::before');
+    const titleAnimation2After = CSSRulePlugin.getRule('.about_titleAnimationBox2__RCKSn::after');
 
-    gsap.to([ kevImgBG1Before, kevImgBG1After, kevImgBG2Before, kevImgBG2After ],{
+    gsap.to([ titleAnimation1Before, titleAnimation1After, titleAnimation2Before, titleAnimation2After ],{
         transform: 'rotate(720deg)',
-        // stagger: 1,
+        stagger: 1.5,
         duration: 64,
         ease: 'linear',
         repeat: -1,
         yoyo: true
     });
 };
+
+export const revealProject = (projectRef, projectImgRef, isProjectBodyOpen)=>{
+    const tl = gsap.timeline();
+    const projectBody = projectRef.current;
+    const projectImg = projectImgRef.current;
+    if(isProjectBodyOpen){
+        tl
+        .to([projectBody, projectImg],{
+            opacity: 0,
+            duration: 0.1,
+            ease: 'power2.inOut'
+        })
+        .to(projectBody,{
+            height: 0,
+            duration: 0.2,
+            ease: 'power2.inOut'
+        })
+        .to(projectBody,{
+            display: 'none',
+            duration: 0.1,
+            ease: 'power2.inOut'
+        },'-=0.1')
+        .to([projectBody, projectImg],{
+            display: 'none',
+            duration: 0.1,
+            ease: 'power2.inOut'
+        })
+    };
+    if(!isProjectBodyOpen){
+        tl
+        .to([projectBody, projectImg],{
+            display: 'block',
+            height: 'fit-content',
+            opacity: 1,
+            duration: 1,
+            ease: 'power2.inOut'
+        })
+        .to(projectImg,{
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.inOut'
+        },'-=0.9')
+    };
+};
+
+export const animateSpanClick=(isProjectBodyOpen, projectSpanClickElem)=>{
+    gsap.registerPlugin(CSSRulePlugin);
+    const spanClick = CSSRulePlugin.getRule(`${projectSpanClickElem}`);
+    console.log(spanClick);
+    
+    if(!isProjectBodyOpen){
+        gsap.to(spanClick,{
+            transform: 'rotate(0deg)',
+            duration: 0.3,
+            ease: 'power2.inOut'
+        })
+    };
+    if(isProjectBodyOpen){
+        gsap.to(spanClick,{
+            transform: 'rotate(90deg)',
+            duration: 0.3,
+            ease: 'power2.inOut'
+        })
+    };
+};
+
