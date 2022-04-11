@@ -14,9 +14,6 @@ const About = () => {
           Hello, I&apos;m Kevin
         </h2>
         <div className={styles.mainContainer}>
-          <div className={styles.kevImg}>
-            {/* <Image src={'/703709CA-328A-4ECF-AB6A-FA12DE471B41_1_201.png'} alt='' layout='fill' aria-label='profile picture'/> */}
-          </div>
           <div>
             <h1 className={`${styles.titleContainer}`}>
               <div className={styles.titleAnimationBox1}></div>

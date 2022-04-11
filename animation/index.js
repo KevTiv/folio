@@ -120,10 +120,10 @@ export const revealProject = (projectRef, projectImgRef, isProjectBodyOpen)=>{
             ease: 'power2.inOut'
         })
         .to(projectBody,{
-            height: 0,
-            duration: 0.2,
+            height: '0%',
+            duration: 0.1,
             ease: 'power2.inOut'
-        })
+        },'-=0.1')
         .to(projectBody,{
             display: 'none',
             duration: 0.1,
@@ -141,7 +141,7 @@ export const revealProject = (projectRef, projectImgRef, isProjectBodyOpen)=>{
             display: 'block',
             height: 'fit-content',
             opacity: 1,
-            duration: 1,
+            duration: 1.25,
             ease: 'power2.inOut'
         })
         .to(projectImg,{

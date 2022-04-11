@@ -40,7 +40,7 @@
     }
     p,li{
         @include textFont;
-        @apply text-sm;
+        @apply text-sm px-2;
     }
     li{
         list-style: disc;
@@ -85,6 +85,9 @@
     display: none;
 }
 
+.projectContent{
+    height: 0;
+}
 .links{
     width: 100%;
     display: flex;
